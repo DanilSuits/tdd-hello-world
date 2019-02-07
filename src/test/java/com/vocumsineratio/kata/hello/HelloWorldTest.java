@@ -35,4 +35,17 @@ public class HelloWorldTest {
                 baos.toString()
         );
     }
+
+    @Test
+    public void it_writes_to_print_streams() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(baos);
+
+        HelloWorld.writeTo(out);
+
+        assertEquals(
+                "Hello World\n",
+                baos.toString()
+        );
+    }
 }
