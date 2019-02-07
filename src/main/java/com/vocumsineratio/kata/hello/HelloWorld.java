@@ -5,7 +5,6 @@
  */
 package com.vocumsineratio.kata.hello;
 
-import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
@@ -22,11 +21,22 @@ public class HelloWorld {
         out.println("Hello World");
     }
 
-    public static void writeTo(OutputStream baos) {
-        final String encoding =  "UTF-8";
-        boolean autoFlush = true;
+    public static void writeTo(OutputStream out) {
+        PrintStream printStream = printStream(out);
+        writeTo(printStream);
+    }
+
+    static PrintStream printStream(OutputStream out) {
+        final String encoding = "UTF-8";
+        final boolean autoFlush = true;
         try {
-            writeTo(new PrintStream(baos, autoFlush, encoding));
+            return
+                    new PrintStream(
+                            out,
+                            autoFlush,
+                            encoding
+                    );
+
         } catch (UnsupportedEncodingException e) {
             throw new IllegalStateException(encoding, e);
         }
