@@ -48,4 +48,15 @@ public class HelloWorldTest {
                 baos.toString()
         );
     }
+
+    @Test
+    public void it_writes_to_output_streams() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        HelloWorld.writeTo(baos);
+
+        assertEquals(
+                "Hello World\n",
+                baos.toString()
+        );
+    }
 }
